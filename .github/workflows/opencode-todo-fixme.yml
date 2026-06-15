@@ -1,0 +1,52 @@
+name: opencode-todo-fixme
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Install OpenCode
+        run: curl -fsSL https://opencode.ai/install | bash
+
+      - name: Add OpenCode to PATH
+        run: echo "$HOME/.opencode/bin" >> "$GITHUB_PATH"
+
+      - name: Find TODO and FIXME comments
+        env:
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
+          OPENCODE_PERMISSION: >-
+            {"read":"allow","glob":"allow","grep":"allow","list":"allow",
+            "edit":"deny","bash":"deny","task":"deny","webfetch":"deny",
+            "websearch":"deny","external_directory":"deny"}
+        run: |
+          set +e
+          report="$RUNNER_TEMP/opencode-report.md"
+
+          opencode run \
+            --agent plan \
+            --model opencode/kimi-k2.6 \
+            --title "TODO and FIXME scan" \
+            "Inspect the repository and find uppercase TODO and FIXME comments in tracked source files. Ignore .github/workflows/opencode-todo-fixme.yml. Do not modify any files. Return a concise Markdown report grouped by marker, with file paths, line numbers, and comment text. If there are no matches, state that clearly." \
+            > "$report" 2>&1
+          status=$?
+
+          cat "$report"
+          {
+            echo "## OpenCode TODO/FIXME report"
+            echo
+            cat "$report"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          exit "$status"

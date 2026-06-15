@@ -13,6 +13,7 @@ const server = http.createServer((req, res) => {
 
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
+  // FIXME fix some string
   res.end('Hello, World Test!\n');
 });
 
@@ -21,6 +22,7 @@ server.listen(port, hostname, () => {
 });
 
 server.on('error', (err) => {
+  // TODO: test todo
   console.error('Server error:', err);
 });
 
