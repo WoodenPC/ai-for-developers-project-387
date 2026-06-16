@@ -13,6 +13,10 @@ Workspaces:
 - `apps/backend`: server backend application.
 - `packages/api-dto`: API contract and shared DTO boundary.
 
+## Commits
+
+Use **Conventional Commits** for commit messages.
+
 ## Working Rules
 
 - Do not edit, delete, or rename `.github/workflows/hexlet-check.yml`.
