@@ -1,0 +1,12 @@
+emit:
+  - "@typespec/json-schema"
+  - "@typespec/openapi3"
+
+options:
+  "@typespec/json-schema":
+    emitter-output-dir: "{project-root}/dist/json-schema"
+    file-type: json
+    emitAllModels: true
+    bundleId: contract-schemas.json
+  "@typespec/openapi3":
+    emitter-output-dir: "{project-root}/dist/openapi"
