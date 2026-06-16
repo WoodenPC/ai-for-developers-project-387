@@ -23,6 +23,7 @@
     "@commitlint/config-conventional": "^21.0.2",
     "lint-staged": "17.0.7",
     "oxlint": "1.70.0",
+    "prettier": "^3.5.0",
     "turbo": "^2.9.14"
   }
 }
