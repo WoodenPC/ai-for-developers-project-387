@@ -8,6 +8,12 @@
     "lint": {
       "outputs": []
     },
+    "lint:precommit": {
+      "outputs": []
+    },
+    "type-check": {
+      "outputs": []
+    },
     "test": {
       "dependsOn": ["^build"],
       "outputs": []

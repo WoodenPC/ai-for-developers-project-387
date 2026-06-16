@@ -12,8 +12,10 @@
     "build": "pnpm generate:openapi && pnpm generate:types",
     "generate:openapi": "tsp compile .",
     "generate:types": "openapi-typescript ./dist/openapi/openapi.yaml -o ./generated/api-types.ts --root-types --root-types-no-schema-prefix --export-type",
-    "lint": "echo \"api-dto lint is not configured yet\"",
-    "test": "echo \"api-dto tests are not configured yet\""
+    "lint": "oxlint --config .oxlintrc.json --tsconfig tsconfig.json generated",
+    "lint:precommit": "oxlint --config .oxlintrc.json --tsconfig tsconfig.json generated",
+    "test": "pnpm type-check",
+    "type-check": "tsp compile . --no-emit && tsc -p tsconfig.json --noEmit --pretty false"
   },
   "devDependencies": {
     "@typespec/compiler": "^1.4.0",

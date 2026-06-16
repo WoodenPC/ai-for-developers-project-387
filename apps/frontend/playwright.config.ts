@@ -15,7 +15,7 @@ export default defineConfig({
   use: {
     baseURL: frontendUrl,
     trace: "retain-on-failure",
-    headless: false,
+    headless: true,
   },
   webServer: [
     {

@@ -8,10 +8,12 @@
     "dev": "tsx watch src/server.ts",
     "generate:contract-schemas": "pnpm --filter @calls-calendar/api-dto generate:openapi && node ./scripts/build-contract-schemas.mjs",
     "generate:prism": "pnpm --filter @calls-calendar/api-dto generate:openapi && node ./scripts/build-prism-openapi.mjs",
-    "lint": "echo \"backend lint is not configured yet\"",
+    "lint": "oxlint --config .oxlintrc.json --tsconfig tsconfig.json src test vitest.config.ts",
+    "lint:precommit": "oxlint --config .oxlintrc.json --tsconfig tsconfig.json src test vitest.config.ts",
     "mock": "pnpm generate:prism && prism mock ./dist/prism/openapi.mock.yaml -h 127.0.0.1 -p 4010",
     "start": "node dist/server.js",
-    "test": "pnpm generate:contract-schemas && vitest run"
+    "test": "pnpm generate:contract-schemas && vitest run",
+    "type-check": "tsc -p tsconfig.json --noEmit --pretty false"
   },
   "devDependencies": {
     "@calls-calendar/api-dto": "workspace:^",
