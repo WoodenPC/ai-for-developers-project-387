@@ -4,6 +4,7 @@
   "packageManager": "pnpm@10.0.0",
   "scripts": {
     "build": "turbo run build",
+    "commitlint": "commitlint",
     "lint": "turbo run lint",
     "lint:precommit": "turbo run lint:precommit",
     "lint-staged": "lint-staged",
@@ -17,6 +18,8 @@
     "node": ">=22.22.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21.0.2",
+    "@commitlint/config-conventional": "^21.0.2",
     "lint-staged": "17.0.7",
     "oxlint": "1.70.0",
     "turbo": "^2.9.14"
