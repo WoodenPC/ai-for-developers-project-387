@@ -1,4 +1,4 @@
 module.exports = {
-  '**/*.{js,jsx,ts,tsx,mjs,cjs}': () => 'pnpm lint:staged',
+  '**/*.{js,jsx,ts,tsx,mjs,cjs}': () => 'pnpm lint:precommit',
   '**/*.{ts,tsx,tsp}': () => 'pnpm type-check',
 };

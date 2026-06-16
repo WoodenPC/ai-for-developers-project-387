@@ -13,7 +13,7 @@
     "generate:openapi": "tsp compile .",
     "generate:types": "openapi-typescript ./dist/openapi/openapi.yaml -o ./generated/api-types.ts --root-types --root-types-no-schema-prefix --export-type",
     "lint": "oxlint --config .oxlintrc.json --tsconfig tsconfig.json generated",
-    "lint:staged": "oxlint --config .oxlintrc.json --tsconfig tsconfig.json generated",
+    "lint:precommit": "oxlint --config .oxlintrc.json --tsconfig tsconfig.json generated",
     "test": "pnpm type-check",
     "type-check": "tsp compile . --no-emit && tsc -p tsconfig.json --noEmit --pretty false"
   },

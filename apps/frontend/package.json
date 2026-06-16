@@ -6,7 +6,7 @@
     "build": "vite build",
     "dev": "vite --host 127.0.0.1",
     "lint": "oxlint --config .oxlintrc.json --tsconfig tsconfig.json src e2e vite.config.ts playwright.config.ts",
-    "lint:staged": "oxlint --config .oxlintrc.json --tsconfig tsconfig.json src e2e vite.config.ts playwright.config.ts",
+    "lint:precommit": "oxlint --config .oxlintrc.json --tsconfig tsconfig.json src e2e vite.config.ts playwright.config.ts",
     "preview": "vite preview --host 127.0.0.1",
     "test": "pnpm type-check",
     "type-check": "tsc --noEmit --pretty false",
