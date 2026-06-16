@@ -1,4 +1,0 @@
-{
-  "**/*.{js,jsx,ts,tsx,mjs,cjs}": "sh -c 'pnpm lint:staged'",
-  "**/*.{ts,tsx,tsp}": "sh -c 'pnpm type-check'"
-}

@@ -8,7 +8,7 @@ The requested workflow needs one monorepo-level lint-staged configuration, but p
 
 **Goals:**
 
-- Add a single root `.lintstagedrc` that is the only lint-staged configuration file in the repository.
+- Add a single root lint-staged configuration file that is the only lint-staged configuration file in the repository.
 - Add a committed pre-commit hook that runs lint-staged from the repository root.
 - Add package-level commands for oxc lint and type-check so each workspace can own its lint scope and rule set.
 - Ensure staged commits fail when lint or type-check commands fail.
@@ -26,7 +26,7 @@ The requested workflow needs one monorepo-level lint-staged configuration, but p
 
 1. Use one root lint-staged configuration with generic commands.
 
-   The root `.lintstagedrc` will map broad staged file globs to root commands such as `pnpm lint:staged` and `pnpm type-check`. This keeps lint-staged behavior discoverable in one place, avoids duplicated configs, and avoids listing individual workspaces in the lint-staged file. Alternatives considered: per-package lint-staged configs or a custom routing helper, both of which make the entry point harder to audit.
+   The root `.lintstagedrc.cjs` will use function tasks that map broad staged file globs to root commands such as `pnpm lint:staged` and `pnpm type-check`. This keeps lint-staged behavior discoverable in one place, avoids duplicated configs, avoids listing individual workspaces in the lint-staged file, and avoids POSIX shell assumptions on Windows. Alternatives considered: per-package lint-staged configs, `sh -c` commands, or a custom routing helper, all of which make the entry point less portable or harder to audit.
 
 2. Keep lint rules and executable checks package-local.
 
@@ -47,6 +47,6 @@ The requested workflow needs one monorepo-level lint-staged configuration, but p
 ## Risks / Trade-offs
 
 - Type-check commands may be slower than lint-only staged checks → Prefer simple root orchestration for pre-commit correctness; optimize later only if commit latency becomes a real issue.
-- lint-staged passes staged file paths while TypeScript project checks usually operate on whole projects → Invoke commands through `sh -c` so file arguments are ignored and package scripts run at project scope.
+- lint-staged passes staged file paths while TypeScript project checks usually operate on whole projects → Use lint-staged function tasks so file arguments are ignored and package scripts run at project scope.
 - Native Git hooks require local `core.hooksPath` configuration → Add a root setup script and document the committed hook path through package scripts so installs configure it automatically.
 - Oxc rule coverage may differ from future package needs → Keep oxc configuration package-local so rules can diverge without creating more lint-staged configs.

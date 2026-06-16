@@ -2,7 +2,7 @@
 
 ### Requirement: Monorepo lint-staged configuration
 
-The repository SHALL define exactly one lint-staged configuration file at the monorepo root, and that configuration SHALL use generic staged file globs to run root lint and type-check commands.
+The repository SHALL define exactly one lint-staged configuration file at the monorepo root, and that configuration SHALL use generic staged file globs and lint-staged function tasks to run root lint and type-check commands.
 
 #### Scenario: Single root lint-staged configuration exists
 
@@ -14,7 +14,7 @@ The repository SHALL define exactly one lint-staged configuration file at the mo
 
 - **WHEN** staged files match the configured lint or type-check globs
 - **THEN** lint-staged runs root commands for staged lint and type-check verification
-- **AND** lint-staged does not list individual workspaces or use a custom workspace routing helper
+- **AND** lint-staged does not list individual workspaces, require a POSIX shell wrapper, or use a custom workspace routing helper
 
 ### Requirement: Pre-commit hook execution
 

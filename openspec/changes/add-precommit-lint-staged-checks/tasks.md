@@ -7,7 +7,7 @@
 
 ## 2. Root lint-staged Configuration
 
-- [x] 2.1 Create exactly one monorepo-level `.lintstagedrc` at the repository root.
+- [x] 2.1 Create exactly one monorepo-level lint-staged config at the repository root.
 - [x] 2.2 Configure staged JavaScript and TypeScript file globs to run the root staged lint command.
 - [x] 2.3 Configure staged TypeScript and TypeSpec file globs to run the root type-check command.
 - [x] 2.4 Keep workspace names out of the root lint-staged configuration.
