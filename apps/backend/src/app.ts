@@ -5,18 +5,13 @@ import { ApiError, isApiError } from "./errors.js";
 import type { ErrorCode } from "./errors.js";
 import { calendarDependenciesPlugin } from "./plugins/calendar-dependencies.js";
 
-console.log('test');
 export function createApp(): FastifyInstance {
-const app = Fastify({
+  const app = Fastify({
     ajv: {
-
-
       customOptions: {
-        coerceTypes: false   ,
+        coerceTypes: false,
         removeAdditional: false,
       },
-
-
       plugins: [ajvFormats as never],
     },
     logger: false,
