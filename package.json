@@ -5,10 +5,17 @@
   "scripts": {
     "build": "turbo run build",
     "lint": "turbo run lint",
+    "lint:staged": "turbo run lint:staged",
+    "lint-staged": "lint-staged",
+    "prepare": "git config core.hooksPath .githooks",
+    "setup:hooks": "git config core.hooksPath .githooks",
     "test": "turbo run test",
+    "type-check": "turbo run type-check",
     "test:e2e": "pnpm --filter @calls-calendar/frontend test:e2e"
   },
   "devDependencies": {
+    "lint-staged": "17.0.7",
+    "oxlint": "1.70.0",
     "turbo": "^2.9.14"
   }
 }
