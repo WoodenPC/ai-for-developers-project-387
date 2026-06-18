@@ -1,5 +1,18 @@
-#!/bin/sh
-set -eu
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Ensure pnpm is available by extending PATH with common install locations
+if ! command -v pnpm &> /dev/null; then
+  export PATH="$PATH:$HOME/.local/share/pnpm:$HOME/setup-pnpm/node_modules/.bin:/usr/local/share/pnpm"
+fi
 
 cd "$(git rev-parse --show-toplevel)"
-pnpm lint-staged
+
+if command -v pnpm &> /dev/null; then
+  pnpm lint-staged
+elif command -v npx &> /dev/null; then
+  npx lint-staged
+else
+  echo "Error: Neither pnpm nor npx is available. Cannot run lint-staged." >&2
+  exit 1
+fi

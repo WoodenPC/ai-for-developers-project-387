@@ -4,4 +4,5 @@ module.exports = {
     'prettier --write',
   ],
   '**/*.{ts,tsx,tsp}': () => 'pnpm type-check',
+  'apps/frontend/**/*.{js,jsx,ts,tsx,json,css,md}': 'prettier --write',
 };
