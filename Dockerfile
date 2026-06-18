@@ -11,7 +11,7 @@ WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@10.0.0 --activate
 COPY --from=pruner /app/out/json/ ./
 COPY --from=pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --ignore-scripts
 COPY --from=pruner /app/out/full/ ./
 RUN pnpm --filter @calls-calendar/backend build
 RUN pnpm --filter @calls-calendar/frontend build
@@ -23,7 +23,7 @@ WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@10.0.0 --activate
 COPY --from=pruner /app/out/json/ ./
 COPY --from=pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
-RUN pnpm install --frozen-lockfile --prod
+RUN pnpm install --frozen-lockfile --prod --ignore-scripts
 
 FROM node:24-bookworm-slim AS production
 
